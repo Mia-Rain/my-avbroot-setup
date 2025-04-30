@@ -219,7 +219,7 @@ def run(args: argparse.Namespace, temp_dir: Path):
     # If we're patching the SELinux policy, then we need to patch both copies of
     # the precompiled policy.
     if need_sepolicies:
-        need_boot_fs.add('vendor_boot')
+        need_boot_fs.add('boot')
         need_ext_fs.add('vendor')
 
     # Verify OTA.
@@ -273,7 +273,7 @@ def run(args: argparse.Namespace, temp_dir: Path):
     # date and needs to be recompiled from the CIL files during boot.
     if need_sepolicies:
         selinux_policies = [
-            boot_fs['vendor_boot'].tree / 'sepolicy',
+            boot_fs['boot'].tree / 'sepolicy',
             ext_fs['vendor'].tree / 'etc' / 'selinux' / 'precompiled_sepolicy',
         ]
     else:
